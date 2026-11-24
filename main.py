@@ -14,6 +14,9 @@ VOW = (
 
 
 def main() -> None:
+    # Guard the entry contract: one non-empty sentence, under 200 chars.
+    if not VOW.strip() or VOW.count(".") != 1 or len(VOW) >= 200:
+        raise ValueError("VOW must be one non-empty sentence under 200 characters")
     output_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
     os.makedirs(output_dir, exist_ok=True)
     entry_path = os.path.join(output_dir, "entry.txt")
